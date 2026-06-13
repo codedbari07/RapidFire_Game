@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: sans-serif;
+    background: radial-gradient(#f9d349,20%, #d57e12);
+}
+.bill{
+    font-size: 60px;
+    cursor: pointer;
+    text-align: center;
+    padding: 40px;
+    transition: .5s;
+    transform: matrix(1.2);
+}
+.bill :hover{
+    color: white;
+    text-decoration: underline;
+}
+.cards{
+    width: 25%;
+    display: inline-block;
+    background-color: blanchedalmond;
+    transform: scaleX(1);
+    border-radius: 1%;
+    margin: 40px;
+    
+}
+.image img{
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.title{
+    text-align: center;
+    padding: 2%;
+    text-decoration: aliceblue;
+    
+}
+.cards:hover{
+       color: red;
+       transition: .6s;
+       transform: scaleX(1.03);
+       box-shadow: 2px 2px 29px black;
+    
+}

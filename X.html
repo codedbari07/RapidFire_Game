@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xbox Account Login – Bari Games</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo"><a href="index.html">BARI GAMES</a></div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="About.html" class="active">About Us</a>
+                    <a href="characters.html">Characters & Guns</a>
+                    <a href="login.html">Login</a>
+                    <button id="globalThemeToggle" class="theme-btn" aria-label="Toggle theme">
+    <i class="fas fa-moon"></i> <span>Dark</span>
+</button>
+                    <a href="signup.html" class="btn-outline">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="login-container">
+                <h1><i class="fab fa-android"></i> Xbox Account Login</h1>
+                <form>
+                    <div class="txt_field"><input type="text" required><label>Android Account / Email</label></div>
+                    <div class="txt_field"><input type="password" required><label>Password</label></div>
+                    <input type="submit" value="Login" class="inp">
+                    <div class="signup_link">Don't have an Android account? <a href="signup.html">Signup with Bari Games</a></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Bari Games</h4><ul><li><a href="#">About</a></li><li><a href="#">Press</a></li></ul></div>
+                <div class="footer-col"><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+                <div class="footer-col"><h4>Follow</h4><div class="social-links"><a href="#"><i class="fab fa-discord"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="copyright">© 2025 Bari Games – Rapid Fire. All rights reserved.</div>
+        </div>
+    </footer>
+    <script>
+    (function() {
+        const THEME_KEY = 'bari_theme';
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+                localStorage.setItem(THEME_KEY, 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                localStorage.setItem(THEME_KEY, 'dark');
+            }
+            // update button icon/text if it exists
+            const btn = document.getElementById('globalThemeToggle');
+            if (btn) {
+                const icon = btn.querySelector('i');
+                const span = btn.querySelector('span');
+                if (theme === 'light') {
+                    if (icon) icon.className = 'fas fa-sun';
+                    if (span) span.innerText = 'Light';
+                } else {
+                    if (icon) icon.className = 'fas fa-moon';
+                    if (span) span.innerText = 'Dark';
+                }
+            }
+        }
+
+        // load saved theme
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'light') setTheme('light');
+        else setTheme('dark'); // default dark
+
+        // wait for button to exist (if page has it)
+        function bindToggle() {
+            const toggleBtn = document.getElementById('globalThemeToggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    const isLight = document.body.classList.contains('light-theme');
+                    setTheme(isLight ? 'dark' : 'light');
+                });
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bindToggle);
+        } else {
+            bindToggle();
+        }
+    })();
+</script>
+</body>
+</html>

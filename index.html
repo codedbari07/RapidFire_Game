@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bari Games | Rapid Fire</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theme-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            color: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        .theme-btn:hover { background: #f9b23f; color: #0b0d17; }
+        body.light-theme .theme-btn { background: rgba(0,0,0,0.05); }
+        .profile-icon {
+            width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+            cursor: pointer; border: 2px solid #f9b23f; transition: 0.2s;
+        }
+        .profile-icon:hover { transform: scale(1.05); border-color: #ffcc6e; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo"><a href="index.html">BARI GAMES</a></div>
+                <div class="nav-links" id="navLinks"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-fire"></i> #1 Trending 2025</div>
+                    <h1>RAPID FIRE</h1>
+                    <h3>The Bari Games</h3>
+                    <p>Multiplayer strategy mayhem. Team Deathmatch, Battle Royale & Capture the Flag. Choose your legend and dominate the arena.</p>
+                    <a href="login.html" class="btn-primary"><i class="fas fa-gamepad"></i> Play Now</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://preview.redd.it/enhnbsowz1p11.png?width=789&auto=webp&s=03c34153a20b6117ec2eacd37df64446372d035f" alt="Game character">
+                </div>
+            </div>
+            <div class="section-header"><h2>Why Play Rapid Fire?</h2></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 3rem;">
+                <div class="feature-card"><i class="fas fa-users"></i><h3>50+ Players</h3><p>Epic battles</p></div>
+                <div class="feature-card"><i class="fas fa-gun"></i><h3>Unique Guns</h3><p>Legendary arsenal</p></div>
+                <div class="feature-card"><i class="fas fa-robot"></i><h3>Hero Abilities</h3><p>Ultimate powers</p></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Bari Games</h4><ul><li><a href="#">About</a></li><li><a href="#">Press</a></li></ul></div>
+                <div class="footer-col"><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+                <div class="footer-col"><h4>Follow</h4><div class="social-links"><a href="#"><i class="fab fa-discord"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="copyright">© 2025 Bari Games – Rapid Fire. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const THEME_KEY = 'bari_theme';
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+                localStorage.setItem(THEME_KEY, 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                localStorage.setItem(THEME_KEY, 'dark');
+            }
+            const btn = document.getElementById('globalThemeToggle');
+            if (btn) {
+                const icon = btn.querySelector('i');
+                const span = btn.querySelector('span');
+                if (theme === 'light') {
+                    if (icon) icon.className = 'fas fa-sun';
+                    if (span) span.innerText = 'Light';
+                } else {
+                    if (icon) icon.className = 'fas fa-moon';
+                    if (span) span.innerText = 'Dark';
+                }
+            }
+        }
+        const saved = localStorage.getItem(THEME_KEY);
+        setTheme(saved === 'light' ? 'light' : 'dark');
+
+        function getCurrentUser() {
+            let curr = JSON.parse(localStorage.getItem('bari_current_user'));
+            if (!curr) return null;
+            let users = JSON.parse(localStorage.getItem('bari_users')) || [];
+            return users.find(u => u.id === curr.id);
+        }
+
+        function updateNavbar() {
+            const navLinks = document.getElementById('navLinks');
+            if (!navLinks) return;
+            const user = getCurrentUser();
+            if (user) {
+                navLinks.innerHTML = `
+                    <a href="index.html" class="active">Home</a>
+                    <a href="About.html">About Us</a>
+                    <a href="Characters Abd Guns.html">Characters & Guns</a>
+                    <img src="${user.profileImage || 'Images/celestial.png'}" class="profile-icon" id="profileIcon" alt="Profile">
+                    <button id="logoutBtn" style="background:#e11d48; padding:0.4rem 1rem; border:none; border-radius:40px; color:white; cursor:pointer;">Logout</button>
+                    <button id="globalThemeToggle" class="theme-btn"><i class="fas fa-moon"></i> <span>Dark</span></button>
+                `;
+                document.getElementById('profileIcon')?.addEventListener('click', () => window.location.href = 'profile.html');
+                document.getElementById('logoutBtn')?.addEventListener('click', () => {
+                    localStorage.removeItem('bari_current_user');
+                    location.reload();
+                });
+                const newToggle = document.getElementById('globalThemeToggle');
+                if (newToggle) {
+                    const isLight = document.body.classList.contains('light-theme');
+                    const icon = newToggle.querySelector('i');
+                    const span = newToggle.querySelector('span');
+                    if (isLight) {
+                        if (icon) icon.className = 'fas fa-sun';
+                        if (span) span.innerText = 'Light';
+                    } else {
+                        if (icon) icon.className = 'fas fa-moon';
+                        if (span) span.innerText = 'Dark';
+                    }
+                    newToggle.addEventListener('click', () => {
+                        const isLightNow = document.body.classList.contains('light-theme');
+                        setTheme(isLightNow ? 'dark' : 'light');
+                        updateNavbar(); // refresh to update toggle button text
+                    });
+                }
+            } else {
+                navLinks.innerHTML = `
+                    <a href="index.html" class="active">Home</a>
+                    <a href="About.html">About Us</a>
+                    <a href="Characters Abd Guns.html">Characters & Guns</a>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html" class="btn-outline">Sign Up</a>
+                    <button id="globalThemeToggle" class="theme-btn"><i class="fas fa-moon"></i> <span>Dark</span></button>
+                `;
+                const toggleBtn = document.getElementById('globalThemeToggle');
+                if (toggleBtn) {
+                    const isLight = document.body.classList.contains('light-theme');
+                    const icon = toggleBtn.querySelector('i');
+                    const span = toggleBtn.querySelector('span');
+                    if (isLight) {
+                        if (icon) icon.className = 'fas fa-sun';
+                        if (span) span.innerText = 'Light';
+                    } else {
+                        if (icon) icon.className = 'fas fa-moon';
+                        if (span) span.innerText = 'Dark';
+                    }
+                    toggleBtn.addEventListener('click', () => {
+                        const isLightNow = document.body.classList.contains('light-theme');
+                        setTheme(isLightNow ? 'dark' : 'light');
+                        updateNavbar();
+                    });
+                }
+            }
+        }
+        updateNavbar();
+    </script>
+</body>
+</html>

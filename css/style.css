@@ -1,0 +1,507 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0b0d17;
+    color: #eef2ff;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+}
+
+/* ========== TYPOGRAPHY & LINKS ========== */
+h1, h2, h3, .logo {
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========== HEADER & NAVIGATION ========== */
+.main-header {
+    background: #07090fcc;
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(249, 178, 63, 0.3);
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FFD966, #f9b23f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #f9b23f;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #f9b23f;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    font-weight: 600;
+}
+
+.btn-outline:hover {
+    background: #f9b23f;
+    color: #0b0d17;
+}
+
+.btn-primary {
+    background: #f9b23f;
+    color: #0b0d17;
+    padding: 0.6rem 1.5rem;
+    border-radius: 40px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #ffcc6e;
+    transform: translateY(-2px);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: #05060a;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid #1e2438;
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+    color: #f9b23f;
+    margin-bottom: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-col a {
+    color: #b9c3e6;
+    transition: 0.2s;
+}
+
+.footer-col a:hover {
+    color: #f9b23f;
+    padding-left: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.4rem;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    border-top: 1px solid #1e2438;
+    padding-top: 1.5rem;
+}
+
+/* ========== HERO SECTION (index) ========== */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-badge {
+    color: #f9b23f;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(to right, #FFE6B0, #f9b23f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0.5rem 0;
+}
+
+.hero-content p {
+    margin: 1rem 0 1.8rem;
+    color: #b9c3e6;
+    max-width: 500px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+/* ========== CARDS GRID (characters & guns) ========== */
+.section-header {
+    text-align: center;
+    margin: 3rem 0 2rem;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    border-bottom: 3px solid #f9b23f;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.game-card {
+    background: #131725;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 1px solid #2a2f42;
+}
+
+.game-card:hover {
+    transform: translateY(-6px);
+    border-color: #f9b23f;
+}
+
+.card-img {
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.game-card:hover .card-img img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.2rem;
+}
+
+.card-content h3 {
+    color: #ffde9c;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    font-size: 0.85rem;
+    color: #cdd6f4;
+}
+
+/* ========== LOGIN CARDS (hub) ========== */
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.platform-card {
+    background: #131725;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 28px;
+    transition: 0.3s;
+    border: 1px solid #2a2f42;
+}
+
+.platform-card i {
+    font-size: 2.5rem;
+    color: #f9b23f;
+    margin-bottom: 1rem;
+}
+
+.platform-card:hover {
+    transform: scale(1.03);
+    background: #1a1f2e;
+}
+
+/* ========== LOGIN FORM (shared) ========== */
+.login-container {
+    max-width: 450px;
+    margin: 3rem auto;
+    background: #131725;
+    padding: 2rem;
+    border-radius: 32px;
+    border: 1px solid #2a2f42;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.txt_field {
+    position: relative;
+    margin: 30px 0;
+    border-bottom: 2px solid #adadad;
+}
+
+.txt_field input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    color: white;
+}
+
+.txt_field label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+    top: -5px;
+    color: #f9b23f;
+}
+
+.inp {
+    width: 100%;
+    background: #f9b23f;
+    border: none;
+    padding: 12px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.inp:hover {
+    background: #ffcc6e;
+}
+
+.signup_link {
+    text-align: center;
+    margin-top: 20px;
+    color: #b9c3e6;
+}
+
+.signup_link a {
+    color: #f9b23f;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        justify-content: center;
+    }
+}
+/* ========== LIGHT THEME OVERRIDES ========== */
+body.light-theme {
+    background: #f5f7fe;
+    color: #1e1f2c;
+}
+
+body.light-theme .main-header {
+    background: #ffffffcc;
+    backdrop-filter: blur(12px);
+    border-bottom-color: rgba(0,0,0,0.1);
+}
+
+body.light-theme .navbar a,
+body.light-theme .logo a {
+    color: #1e1f2c;
+}
+
+body.light-theme .btn-outline {
+    border-color: #f9b23f;
+    color: #1e1f2c;
+}
+
+body.light-theme .btn-outline:hover {
+    background: #f9b23f;
+    color: #0b0d17;
+}
+
+body.light-theme .game-card,
+body.light-theme .login-container,
+body.light-theme .platform-card {
+    background: #ffffff;
+    border-color: #dce1f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+body.light-theme .card-content p,
+body.light-theme .signup_link {
+    color: #4a4e69;
+}
+
+body.light-theme .txt_field label {
+    color: #8d8fae;
+}
+
+body.light-theme .txt_field input {
+    color: #1e1f2c;
+}
+
+body.light-theme .footer {
+    background: #eef2fa;
+    border-top-color: #d0d7e8;
+}
+
+body.light-theme .footer-col a,
+body.light-theme .copyright {
+    color: #4a4e69;
+}
+
+body.light-theme .footer-col a:hover {
+    color: #f9b23f;
+}
+
+body.light-theme .section-header h2 {
+    color: #1e1f2c;
+}
+
+body.light-theme .hero-content p {
+    color: #4a4e69;
+}
+.theme-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    border-radius: 40px;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+.theme-btn:hover {
+    background: #f9b23f;
+    color: #0b0d17;
+}
+body.light-theme .theme-btn {
+    background: rgba(0,0,0,0.05);
+}
+/* Feature cards (Why Play Rapid Fire) */
+.feature-card {
+    background: #131725;
+    padding: 1.5rem;
+    border-radius: 24px;
+    text-align: center;
+    width: 200px;
+    transition: 0.3s;
+}
+.feature-card i {
+    font-size: 2rem;
+    color: #f9b23f;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+.feature-card h3 {
+    margin: 0.5rem 0;
+}
+.feature-card p {
+    font-size: 0.9rem;
+    color: #cdd6f4;
+}
+
+/* Light theme override */
+body.light-theme .feature-card {
+    background: #ffffff !important;
+    border: 1px solid #dce1f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+body.light-theme .feature-card p {
+    color: #4a4e69;
+}

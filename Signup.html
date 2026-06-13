@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Bari Games</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0b0d17; }
+        .login-container { max-width: 450px; margin: 3rem auto; background: #131725; padding: 2rem; border-radius: 32px; border: 1px solid #2a2f42; }
+        .txt_field { margin-bottom: 1.5rem; }
+        select { width: 100%; padding: 10px; background: #1e2438; color: white; border: 1px solid #f9b23f; border-radius: 40px; }
+        button { width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 style="text-align:center;">Sign Up</h1>
+        <form id="signupForm">
+            <div class="txt_field"><input type="text" id="username" required><label>Username</label></div>
+            <div class="txt_field"><input type="email" id="email" required><label>Email</label></div>
+            <div class="txt_field"><input type="password" id="password" required><label>Password</label></div>
+            <select id="accountType" required>
+                <option value="bari">Bari Games Account</option>
+                <option value="android">Android Account</option>
+                <option value="apple">Apple Account</option>
+                <option value="playstation">PlayStation Account</option>
+                <option value="xbox">Xbox Account</option>
+                <option value="nintendo">Nintendo Account</option>
+            </select>
+            <button type="submit" class="inp" style="margin-top:20px;">Sign Up</button>
+            <div class="signup_link">Already have account? <a href="login.html">Login</a></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let username = document.getElementById('username').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let password = document.getElementById('password').value;
+            let accountType = document.getElementById('accountType').value;
+
+            let users = JSON.parse(localStorage.getItem('bari_users')) || [];
+            if (users.find(u => u.username === username || u.email === email)) {
+                alert("Username or Email already exists!");
+                return;
+            }
+            let newUser = {
+                id: Date.now(),
+                username: username,
+                email: email,
+                password: password,
+                accountType: accountType,
+                stats: { matches: 0, wins: 0, losses: 0 },
+                review: null   // { text, rating, date }
+            };
+            users.push(newUser);
+            localStorage.setItem('bari_users', JSON.stringify(users));
+            alert("Signup successful! Please login.");
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

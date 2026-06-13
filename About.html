@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About | Rapid Fire by Bari Games – 50-Player Battle Royale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* About page specific styles */
+        .about-hero { text-align: center; margin-bottom: 2.5rem; padding: 1rem 0; }
+        .about-hero h1 { font-size: 3.5rem; background: linear-gradient(135deg, #f9b23f, #e11d48); background-clip: text; -webkit-background-clip: text; color: transparent; font-weight: 800; }
+        .about-hero p { font-size: 1.3rem; color: var(--text-secondary, #b9c3e6); max-width: 800px; margin: 1rem auto 0; }
+        .section-title { font-size: 2rem; font-weight: 700; margin: 2rem 0 1.2rem 0; border-left: 5px solid #f9b23f; padding-left: 1.2rem; }
+        .card-enhanced { background: var(--bg-card, #131725); border-radius: 28px; padding: 1.8rem; margin-bottom: 2rem; border: 1px solid var(--border-light, #2a2f42); }
+        .card-enhanced p { font-size: 1.05rem; margin-bottom: 0.75rem; }
+        .stats-grid { display: flex; flex-wrap: wrap; gap: 1.8rem; justify-content: space-between; margin: 2rem 0; }
+        .stat-card { background: var(--bg-surface, #1a1f2e); border-radius: 2rem; padding: 1.2rem 1.8rem; text-align: center; flex: 1; min-width: 140px; border: 1px solid var(--border-light, #2a2f42); }
+        .stat-card span { font-size: 2.4rem; font-weight: 800; color: #f9b23f; display: block; }
+        .chart-wrapper { display: flex; flex-wrap: wrap; gap: 2rem; margin: 2rem 0; }
+        .chart-box { flex: 1 1 45%; background: var(--bg-card, #131725); border-radius: 28px; padding: 1.5rem; border: 1px solid var(--border-light, #2a2f42); }
+        .chart-box h3 { font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .collab-duo { display: flex; flex-wrap: wrap; gap: 2rem; margin: 1.5rem 0; }
+        .collab-card { flex: 1; background: var(--bg-surface, #1a1f2e); border-radius: 24px; padding: 1.5rem; display: flex; gap: 1.2rem; align-items: center; border: 1px solid var(--border-light, #2a2f42); }
+        .theme-btn { background: rgba(255,255,255,0.1); border: none; font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 40px; color: inherit; display: inline-flex; align-items: center; gap: 6px; transition: 0.3s; }
+        .theme-btn:hover { background: #f9b23f; color: #0b0d17; }
+        .profile-icon { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; border: 2px solid #f9b23f; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .highlight-orange { color: #f9b23f; font-weight: 700; }
+
+        /* Light theme overrides for About page */
+        body.light-theme .card-enhanced,
+        body.light-theme .chart-box,
+        body.light-theme .collab-card,
+        body.light-theme .stat-card {
+            background: #ffffff;
+            border-color: #dce1f0;
+            color: #1e1f2c;
+        }
+        body.light-theme .card-enhanced p,
+        body.light-theme .chart-box p,
+        body.light-theme .collab-card div,
+        body.light-theme .stat-card,
+        body.light-theme .about-hero p,
+        body.light-theme .section-title {
+            color: #1e1f2c !important;
+        }
+        body.light-theme .card-enhanced .highlight-orange,
+        body.light-theme .collab-card strong,
+        body.light-theme .stat-card span {
+            color: #f9b23f;
+        }
+        body.light-theme .collab-card .collab-icon i {
+            color: inherit;
+        }
+        body.light-theme .theme-btn {
+            background: rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 780px) {
+            .about-hero h1 { font-size: 2.4rem; }
+            .section-title { font-size: 1.6rem; }
+            .chart-box { flex: 1 1 100%; }
+            .collab-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo"><a href="index.html">BARI GAMES</a></div>
+                <div class="nav-links" id="navLinks"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Hero section -->
+            <div class="about-hero">
+                <h1>⚡ Rapid Fire: 50 Players. One Survivor.</h1>
+                <p>The ultimate high-stakes battle royale from Bari Games — where reflexes reign and legends are forged. Since 2020, we’ve redefined multiplayer intensity.</p>
+            </div>
+
+            <div class="section-title">🔥 The Ultimate 50-Player Showdown</div>
+            <div class="card-enhanced">
+                <p><strong class="highlight-orange">Rapid Fire</strong> drops 50 combatants into a relentless last-man-standing arena. No downtime, no RNG loot fiascos — just pure, unfiltered action. Matches last 12 minutes max, rewarding aggressive tactics, precision shooting, and environmental mastery. With <strong class="highlight-orange">over 10 million copies sold</strong> and a fiercely loyal community, Rapid Fire stands as a modern classic in the battle royale genre.</p>
+                <p>Our proprietary "Velocity Netcode" ensures buttery-smooth 50-player matches across PC, console, and mobile with ultra-low latency. Every victory feels earned, every defeat a lesson.</p>
+            </div>
+
+            <div class="section-title">🚀 The Birth of a Battle Royale Legend</div>
+            <div class="card-enhanced">
+                <p>Launched in 2020 by Bari Games, Rapid Fire was born from a simple idea: strip away the boring parts of traditional royales. No camping meta, no inventory clutter — just raw combat. The "Velocity Engine" supports 50 real players per server with advanced tick rates, and cross-play unites gamers worldwide. What started as a small indie dream has exploded into a global phenomenon, praised for its arcade soul and competitive integrity.</p>
+            </div>
+
+            <div class="section-title">📊 Record-Breaking Sales & Revenue (2020–2026)</div>
+            <div class="chart-wrapper">
+                <div class="chart-box">
+                    <h3><i class="fas fa-chart-line"></i> Unit Sales: 10 Million Copies</h3>
+                    <p style="margin-bottom: 0.5rem;">Cumulative sales since launch — <strong>10,000,000+</strong> copies worldwide.</p>
+                    <canvas id="salesChart" width="400" height="300"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3><i class="fas fa-coins"></i> In-Game Purchases: $60 Million USD</h3>
+                    <p style="margin-bottom: 0.5rem;">Cosmetics, battle passes, exclusive collab skins — total revenue hit <strong>$60M</strong> across 7 years.</p>
+                    <canvas id="igpChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="section-title">🕸️ Iconic Collaborations: Spider-Man & Batman</div>
+            <div class="collab-duo">
+                <div class="collab-card">
+                    <div class="collab-icon"><i class="fab fa-superpowers" style="color:#e11d48;"></i></div>
+                    <div><strong style="font-size: 1.3rem;">⚡ Sony's Spider-Man Universe</strong><br>Exclusive "Web-Warrior" event: swing through Neo-Queens map, unlock symbiote surge skin, and web-shooter gadget. Over 2 million players joined in 2024.</div>
+                </div>
+                <div class="collab-card">
+                    <div class="collab-icon"><i class="fas fa-bat" style="color:#f1c40f;"></i></div>
+                    <div><strong style="font-size: 1.3rem;">🦇 Batman: Dark Knight Returns</strong><br>Gotham-themed season with grapple gauntlet, Batmobile traversal, noir detective mode. Iconic cowl skins and Riddler challenges.</div>
+                </div>
+            </div>
+
+            <div class="section-title">🏆 Esports & Competitive Ecosystem</div>
+            <div class="card-enhanced">
+                <p>Rapid Fire features an official ranked ladder, weekly community tournaments, and the prestigious <strong>Rapid Fire World Championship</strong> with a $2M prize pool. Recognized by Esports Awards 2025 as "Best Emerging Battle Royale". Over 12 million registered competitive players across 80+ countries.</p>
+            </div>
+
+            <div class="section-title">🏅 Awards & Critical Acclaim</div>
+            <div class="stats-grid">
+                <div class="stat-card"><span>🏆</span> Best Multiplayer 2021 (IGA)</div>
+                <div class="stat-card"><span>⭐ 4.8/5</span> Steam User Rating</div>
+                <div class="stat-card"><span>🎮 25M+</span> Registered Players</div>
+                <div class="stat-card"><span>🌍 100M+</span> Matches Played</div>
+            </div>
+
+            <div class="section-title">🔮 Roadmap: 2027 & Beyond</div>
+            <div class="card-enhanced">
+                <ul style="margin-left: 1.5rem; line-height: 1.7;">
+                    <li>🔥 <strong>New 50-player urban map "Neon District"</strong> – vertical skyscrapers, dynamic weather & destructible environments.</li>
+                    <li>🎮 Full cross-progression & next-gen enhancements (Ray-tracing update, 120FPS on consoles).</li>
+                    <li>🤝 Upcoming collaboration with <strong>Netflix's Arcane</strong> and an original comic series.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">🎮 Behind the Studio: Bari Games</div>
+            <div class="card-enhanced">
+                <p>Bari Games is an independent developer known for fluid, fast-paced multiplayer experiences. With a team of 180 passionate creators, we prioritize fair play, lag-free netcode, and creative collaborations. Our mission: <strong class="highlight-orange">“every match, a story.”</strong> Thank you for being part of the fire.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Bari Games</h4><ul><li><a href="#">About</a></li><li><a href="#">Press</a></li></ul></div>
+                <div class="footer-col"><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+                <div class="footer-col"><h4>Follow</h4><div class="social-links"><a href="#"><i class="fab fa-discord"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="copyright">© 2026 Bari Games – Rapid Fire. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme and Navbar logic (same as index.html)
+        const THEME_KEY = 'bari_theme';
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+                localStorage.setItem(THEME_KEY, 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                localStorage.setItem(THEME_KEY, 'dark');
+            }
+            const btn = document.getElementById('globalThemeToggle');
+            if (btn) {
+                const icon = btn.querySelector('i');
+                const span = btn.querySelector('span');
+                if (theme === 'light') {
+                    if (icon) icon.className = 'fas fa-sun';
+                    if (span) span.innerText = 'Light';
+                } else {
+                    if (icon) icon.className = 'fas fa-moon';
+                    if (span) span.innerText = 'Dark';
+                }
+            }
+        }
+        const saved = localStorage.getItem(THEME_KEY);
+        setTheme(saved === 'light' ? 'light' : 'dark');
+
+        function getCurrentUser() {
+            let curr = JSON.parse(localStorage.getItem('bari_current_user'));
+            if (!curr) return null;
+            let users = JSON.parse(localStorage.getItem('bari_users')) || [];
+            return users.find(u => u.id === curr.id);
+        }
+
+        function updateNavbar() {
+            const navLinks = document.getElementById('navLinks');
+            if (!navLinks) return;
+            const user = getCurrentUser();
+            if (user) {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <a href="About.html" class="active">About Us</a>
+                    <a href="Characters Abd Guns.html">Characters & Guns</a>
+                    <img src="${user.profileImage || 'Images/celestial.png'}" class="profile-icon" id="profileIcon" alt="Profile">
+                    <button id="logoutBtn" style="background:#e11d48; padding:0.4rem 1rem; border:none; border-radius:40px; color:white; cursor:pointer;">Logout</button>
+                    <button id="globalThemeToggle" class="theme-btn"><i class="fas fa-moon"></i> <span>Dark</span></button>
+                `;
+                document.getElementById('profileIcon')?.addEventListener('click', () => window.location.href = 'profile.html');
+                document.getElementById('logoutBtn')?.addEventListener('click', () => {
+                    localStorage.removeItem('bari_current_user');
+                    location.reload();
+                });
+                const newToggle = document.getElementById('globalThemeToggle');
+                if (newToggle) {
+                    const isLight = document.body.classList.contains('light-theme');
+                    const icon = newToggle.querySelector('i');
+                    const span = newToggle.querySelector('span');
+                    if (isLight) {
+                        if (icon) icon.className = 'fas fa-sun';
+                        if (span) span.innerText = 'Light';
+                    } else {
+                        if (icon) icon.className = 'fas fa-moon';
+                        if (span) span.innerText = 'Dark';
+                    }
+                    newToggle.addEventListener('click', () => {
+                        const isLightNow = document.body.classList.contains('light-theme');
+                        setTheme(isLightNow ? 'dark' : 'light');
+                        updateNavbar();
+                    });
+                }
+            } else {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <a href="About.html" class="active">About Us</a>
+                    <a href="Characters Abd Guns.html">Characters & Guns</a>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html" class="btn-outline">Sign Up</a>
+                    <button id="globalThemeToggle" class="theme-btn"><i class="fas fa-moon"></i> <span>Dark</span></button>
+                `;
+                const toggleBtn = document.getElementById('globalThemeToggle');
+                if (toggleBtn) {
+                    const isLight = document.body.classList.contains('light-theme');
+                    const icon = toggleBtn.querySelector('i');
+                    const span = toggleBtn.querySelector('span');
+                    if (isLight) {
+                        if (icon) icon.className = 'fas fa-sun';
+                        if (span) span.innerText = 'Light';
+                    } else {
+                        if (icon) icon.className = 'fas fa-moon';
+                        if (span) span.innerText = 'Dark';
+                    }
+                    toggleBtn.addEventListener('click', () => {
+                        const isLightNow = document.body.classList.contains('light-theme');
+                        setTheme(isLightNow ? 'dark' : 'light');
+                        updateNavbar();
+                    });
+                }
+            }
+        }
+        updateNavbar();
+
+        // Charts initialization
+        let salesChartObj = null, inGameChartObj = null;
+        const years = ['2020','2021','2022','2023','2024','2025','2026'];
+        const salesData = [0.8,1.7,2.5,2.2,1.8,0.7,0.3];
+        const igpData = [2,5,10,12,15,10,6];
+        function initCharts() {
+            const colors = {
+                textColor: document.body.classList.contains('light-theme') ? '#1e293b' : '#f1f5f9',
+                gridColor: document.body.classList.contains('light-theme') ? '#cbd5e1' : '#334155',
+                salesBar: '#f97316',
+                revenueBar: '#3b82f6'
+            };
+            const ctxSales = document.getElementById('salesChart').getContext('2d');
+            const ctxIgp = document.getElementById('igpChart').getContext('2d');
+            if (salesChartObj) salesChartObj.destroy();
+            if (inGameChartObj) inGameChartObj.destroy();
+            salesChartObj = new Chart(ctxSales, {
+                type: 'bar',
+                data: { labels: years, datasets: [{ label: 'Unit Sales (Millions)', data: salesData, backgroundColor: colors.salesBar, borderRadius: 10 }] },
+                options: { responsive: true, maintainAspectRatio: true, scales: { y: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor } }, x: { ticks: { color: colors.textColor } } } }
+            });
+            inGameChartObj = new Chart(ctxIgp, {
+                type: 'bar',
+                data: { labels: years, datasets: [{ label: 'In-Game Revenue (Millions USD)', data: igpData, backgroundColor: colors.revenueBar, borderRadius: 10 }] },
+                options: { responsive: true, maintainAspectRatio: true, scales: { y: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor, callback: (val) => `$${val}M` } }, x: { ticks: { color: colors.textColor } } } }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', initCharts);
+        const observer = new MutationObserver(() => initCharts());
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    </script>
+</body>
+</html>

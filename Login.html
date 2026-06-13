@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bari Games</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { background: #0b0d17; }
+        .login-container { max-width: 450px; margin: 3rem auto; background: #131725; padding: 2rem; border-radius: 32px; border: 1px solid #2a2f42; }
+        select { width: 100%; padding: 10px; background: #1e2438; color: white; border: 1px solid #f9b23f; border-radius: 40px; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 style="text-align:center;">Login</h1>
+        <form id="loginForm">
+            <div class="txt_field"><input type="text" id="loginInput" required><label>Username or Email</label></div>
+            <div class="txt_field"><input type="password" id="loginPassword" required><label>Password</label></div>
+            <select id="loginAccountType">
+                <option value="bari">Bari Games Account</option>
+                <option value="android">Android Account</option>
+                <option value="apple">Apple Account</option>
+                <option value="playstation">PlayStation Account</option>
+                <option value="xbox">Xbox Account</option>
+                <option value="nintendo">Nintendo Account</option>
+            </select>
+            <button type="submit" class="inp">Login</button>
+            <div class="signup_link">Don't have account? <a href="signup.html">Sign Up</a></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let input = document.getElementById('loginInput').value.trim();
+            let password = document.getElementById('loginPassword').value;
+            let accountType = document.getElementById('loginAccountType').value;
+
+            let users = JSON.parse(localStorage.getItem('bari_users')) || [];
+            let user = users.find(u => (u.username === input || u.email === input) && u.accountType === accountType);
+            if (user && user.password === password) {
+                localStorage.setItem('bari_current_user', JSON.stringify({ id: user.id, username: user.username, accountType: user.accountType }));
+                alert("Login successful!");
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid credentials or wrong account type.");
+            }
+        });
+    </script>
+</body>
+</html>
